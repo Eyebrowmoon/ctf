@@ -1,0 +1,10 @@
+Welcome to qwn2own 2016
+ - This pwning challenge has no server. You will be asked to provide a URL, we will browse to that URL.
+ - No user interaction.
+ - The target is Ubuntu 15.10 and is running inside virtualbox.
+ - All you have to do is pop the gnome-calculator (/usr/bin/gnome-calculator).
+ - First rounds start after UTC 02:00 AM Sunday 03 / 06
+ - After this, there will be a new round every 3 hours
+ - You need to have more than 20 pwning points in order to be able to play this challenge.
+ - Pwning points are points that come from solving other pwning challenges in this ctf.
+ - More info will be provided on how to make submissions later...

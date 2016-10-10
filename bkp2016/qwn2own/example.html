@@ -1,0 +1,47 @@
+<head id="special">
+    BKPDataBase example usage.
+</head>
+<script type="text/javascript">
+    try{
+    db = BKPDataBase.create("mydb", "mypassword");
+    joedb = BKPDataBase.create("joedb", "joepassword");
+
+    tdeldb = BKPDataBase.create("tdeldb", "delpassword");
+    r = BKPDataBase.deldb("tdeldb", "delpassword");
+    alert(r == 1);
+
+    mjoedb = BKPDataBase.getdb("joedb", "joepassword");
+    alert(mjoedb == joedb);
+
+    var store_pin = 1234
+    intst = db.createStore("myintstore", 1, [1,2,3,4,5,6,7,8,9,10], store_pin);
+    strst = db.createStore("mystringstore", 2, ["a", "b", "c", "d", "e"], store_pin);
+    kst = db.createKeyedStore("mykeyedstore", {"akey": "avalue"}, store_pin);
+
+    intst.append(31);
+    intst.append(32);
+    intst.append(33);
+    alert(intst.getall());
+    intst.cut(5, 8);
+    alert(intst.getall());
+    alert(intst.get(5));
+
+    strst.append(["olala","yipii","eddimalou"]);
+    alert(strst.getall());
+    strst.remove(2);
+    alert(strst.getall());
+
+    kst.insert({"anotherkey":"anothervalue"});
+    alert(kst.get("akey"));
+    alert(kst.get("anotherkey"));
+    kstdict = kst.getall();
+    alert(kstdict["akey"] == kst.get("akey"));
+
+    alert("SS size: " + strst.size());
+    alert("IS size: " + intst.size());
+    alert("KS size: " + kst.size());
+
+    alert("Done");
+    }catch(e){alert(e);};
+
+</script>
