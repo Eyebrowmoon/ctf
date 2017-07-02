@@ -1,0 +1,12 @@
+xored = [0x90df, 0x70bc, 0xef57, 0x5a96, 0xcfee, 0x5509, 0x80ce, 0x0d20, 0xe14f, 0x070e, 0xa446, 0x2fc6, 0xecf0, 0x5e55, 0x782b, 0x6457]
+input_string = "0000000000000000"
+
+for i in xrange(16):
+  result = xored[i] ^ ord(input_string[i])
+  
+  print hex(result),
+
+  '''
+  print hex(result % 0x100),
+  print hex(result >> 8),
+  '''

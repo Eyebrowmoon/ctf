@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+          
+
+
+    <title>PNG Parser</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/materialize.min.css" media="screen,projection"/>
+    <link rel="stylesheet" href="/static/css/dropify.min.css" media="screen,projection"/>
+    <link rel="stylesheet" href="/static/css/custom.css" media="screen,projection"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/dropify.min.js"></script>
+    <script src="/static/js/materialize.min.js"></script>
+
+
+</head>
+<body>
+      
+
+<main class="Site-content">
+
+    <!-- navi -->
+    <nav class="fixed black darken-1" role="navigation">
+        <div class="navi-wrapper container">
+            <a id="logo-container" href="/" class="brand-logo">PNG Parser</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">.</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- main content -->
+    <div class="wrapper">
+    <br><br><br><br><br>
+        <div class="container">
+
+
+        
+<!-- main banner -->
+<div class="section no-pad-bot wrapper" id="index-banner">
+    <div class="container" style="width: 80%;">
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content"><pre id="modal-content"></pre></div>
+    <div class="modal-footer"><hr/><a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a></div>
+  </div>
+
+<div class="row s12">
+  <div class="col s12">
+    <ul class="tabs tab-demo-active z-depth-1 blue lighten-1" style="width: 100%;">
+      <li class="tab col s6"><a class="white-text waves-effect waves-light active" href="#one">File Upload</a></li>
+      <li class="tab col s6"><a class="white-text waves-effect waves-light" href="#two">Internet</a></li>
+    <div class="indicator" style="right: 629px; left: 0px;"></div><div class="indicator" style="right: 629px; left: 0px;"></div></ul>
+  </div>
+
+  <div class="col s12">
+
+    <div id="one" class="col s12 cyan blue lighten-3" style="display: block;">
+      <div class="row">
+        <div class="col s12">
+          <h5>File Uploads</h5>
+          <form class="col s12" method="POST" action="/fileupload" enctype="multipart/form-data">
+          <input type="file" id="upload_file" name="upload_file" class="dropify" data-height="350"/>
+          <div id="upload_button" class="input-field col s3" style="display: none;">
+               <input type="submit" class="light btn" value="Go!">
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="two" class="col s12  cyan blue lighten-3" style="display: none;">
+      <h5>Internet</h5>
+        <form class="col s12" method="POST" action="/url">
+          <div class="row">
+            <div class="input-field col s2">
+              <select id="protocol" name="protocol" required>
+                <option value="http://">http</option>
+                <option value="https://">https</option>
+              </select>
+              <label>Protocol</label>
+            </div>
+
+            <div class="input-field col s7">
+              <input id="url" type="text" name="url" required>
+              <label for="url">url</label>
+            </div>
+            <div class="input-field col s3">
+               <input type="submit" id="addr_button" class="light btn" value="Go!">
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+var drEvent = $('.dropify').dropify({
+  messages:{'default': '<center>Drag and drop or click to Upload</center>'}
+});
+drEvent.on('dropify.afterClear', function(event, element){
+  $("#upload_button").hide();
+});
+
+$("#upload_file").on('change',function(){
+  if( this.files[0] == undefined){
+    $("#upload_button").hide();
+  }
+  else{
+    $("#upload_button").show();
+  } 
+});
+  $('select').material_select();
+});
+
+</script>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+    <!-- Footer -->
+    <footer class="page-footer black darken-1" >
+        <div class="footer-copyright">
+            <div class="row">
+                <div class="container"></div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
+

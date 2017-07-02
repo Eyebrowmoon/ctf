@@ -1,0 +1,3 @@
+root      2604  0.0  0.0   2292  1404 pts/54   S+   02:08   0:00 ./liberty localhost
+root      2611  0.0  0.0   4508   784 pts/7    S+   02:08   0:00 sh -c ps -aux | grep "./liberty localhost" > process_list
+root      2613  0.0  0.0  15504   932 pts/7    S+   02:08   0:00 grep ./liberty localhost

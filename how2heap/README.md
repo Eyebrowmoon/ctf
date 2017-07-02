@@ -13,13 +13,23 @@ We came up with the idea during a hack meeting, and have implemented the followi
 | [poison_null_byte.c](poison_null_byte.c) | Exploiting a single null byte overflow. | [PlaidCTF 2015-plaiddb](https://github.com/ctfs/write-ups-2015/tree/master/plaidctf-2015/pwnable/plaiddb) |
 | [house_of_lore.c](house_of_lore.c) | Tricking malloc into returning a nearly-arbitrary pointer by abusing the smallbin freelist. | |
 | [overlapping_chunks.c](overlapping_chunks.c) | Exploit the overwrite of a freed chunk size in the unsorted bin in order to make a new allocation overlap with an existing chunk | [hack.lu CTF 2015-bookstore](https://github.com/ctfs/write-ups-2015/tree/master/hack-lu-ctf-2015/exploiting/bookstore) |
-| [house_of_force.c](house_of_force.c) | Exploiting the Top Chunk (Wilderness) header in order to get malloc to return a nearly-arbitrary pointer  | [Boston Key Party 2016-cookbook](https://github.com/ctfs/write-ups-2016/tree/master/boston-key-party-2016/pwn/cookbook-6) |
+| [house_of_force.c](house_of_force.c) | Exploiting the Top Chunk (Wilderness) header in order to get malloc to return a nearly-arbitrary pointer  | [Boston Key Party 2016-cookbook](https://github.com/ctfs/write-ups-2016/tree/master/boston-key-party-2016/pwn/cookbook-6), [BCTF 2016-bcloud](https://github.com/ctfs/write-ups-2016/tree/master/bctf-2016/exploit/bcloud-200) |
+| [unsorted_bin_attack.c](unsorted_bin_attack.c) | Exploiting the overwrite of a freed chunk on unsorted bin freelist to write a large value into arbitrary address  | [0ctf 2016-zerostorage](https://github.com/ctfs/write-ups-2016/tree/master/0ctf-2016/exploit/zerostorage-6) |
+| [house_of_einherjar.c](house_of_einherjar.c) | Exploiting a single null byte overflow to trick malloc into returning a controlled pointer  | [Seccon 2016-tinypad](https://gist.github.com/hhc0null/4424a2a19a60c7f44e543e32190aaabf) |
 
 Have a good example?
 Add it here!
 Try to inline the whole technique in a single `.c` -- it's a lot easier to learn that way.
 
-# Malloc Playground
+# Heap Exploitation Tools
+
+There are some heap exploitation tools floating around.
+
+## libheap
+
+Examine the glibc heap in gdb: https://github.com/cloudburst/libheap
+
+## Malloc Playground
 
 The `malloc_playground.c` file given is the source for a program that prompts the user for commands to allocate and free memory interactively.
 
@@ -27,6 +37,8 @@ The `malloc_playground.c` file given is the source for a program that prompts th
 
 Some good heap exploitation resources, roughly in order of their publication, are:
 
+- ptmalloc fanzine, a set of resources and examples related to meta-data attacks on ptmalloc: http://tukan.farm/2016/07/26/ptmalloc-fanzine/
+- A malloc diagram, from libheap: https://raw.githubusercontent.com/cloudburst/libheap/master/heap.png
 - Glibc Adventures: The Forgotten Chunk (http://www.contextis.com/documents/120/Glibc_Adventures-The_Forgotten_Chunks.pdf) - advanced heap exploitation
 - Pseudomonarchia jemallocum (http://www.phrack.org/issues/68/10.html)
 - The House Of Lore: Reloaded (http://phrack.org/issues/67/8.html)
@@ -39,7 +51,7 @@ Some good heap exploitation resources, roughly in order of their publication, ar
 - Exploiting The Wilderness (http://seclists.org/vuln-dev/2004/Feb/25)
 - Advanced Doug lea's malloc exploits (http://phrack.org/issues/61/6.html)
 
-### Hardening
+# Hardening
 There are a couple of "hardening" measures embedded in glibc, like `export MALLOC_CHECK_=1` (enables some checks), `export MALLOC_PERTURB_=1` (data is overwritten), `export MALLOC_MMAP_THRESHOLD_=1` (always use mmap()), ...
 
 More info: [mcheck()](http://www.gnu.org/software/libc/manual/html_node/Heap-Consistency-Checking.html), [mallopt()](http://www.gnu.org/software/libc/manual/html_node/Malloc-Tunable-Parameters.html).
