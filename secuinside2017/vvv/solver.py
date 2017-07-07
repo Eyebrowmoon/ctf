@@ -22,18 +22,10 @@ def s(msg, enter = True):
   if DEBUG:
     log.info("Sent: " + msg)
 
-while True:
-  try:
-    p = process("./vvv")
+p = process("./vvv")
 
-    randval = random.randint(0, 0x100)
-    for i in xrange(randval):
-      length = random.randint(0, 0x100)
-      s("\x17" * length + " ", False)
+s("\x17", False)
 
-    length = random.randint(0, 0x100)
-    s("\x17" * length, False)
+p.interactive()
+p.close()
 
-    p.close()
-  except:
-    continue
