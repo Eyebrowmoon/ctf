@@ -1,26 +1,35 @@
-#!/usr/bin/python
-
 from pwn import *
 
-# s = remote("52.198.232.90", 31337)
-# s = process("./omega_go")
-s = remote("localhost", 4000)
+context.terminal = ['gnome-terminal', '-x', 'sh', '-c']
+
+p = process("./omega_go")
+gdb.attach(p)
+
+DEBUG = True
+
+def r(msg):
+  response = p.recvuntil(msg)
+  if DEBUG:
+    log.info(response)
+  return response
+
+def s(msg, enter = True):
+  msg = msg + "\n" if enter else msg
+  p.send(msg)
+  if DEBUG:
+    log.info("Sent: " + msg)
 
 for row in range(9):
     for i in range(19):
-        for r in range(22):
-            log.info(s.recvline())
+        for j in range(22):
+            r("\n")
 
-        (s.sendline(chr(i + 0x41) + str(row + 1)))
+        (s(chr(i + 0x41) + str(row + 1)))
 
-for i in range(8):
-    for r in range(22):
-        log.info(s.recvline())
-    (s.sendline(chr(i + 0x41) + str(10)))
+for i in range(9):
+    for j in range(22):
+        r("\n")
+    (s(chr(i + 0x41) + str(10)))
 
-# s.interactive()
-
-# s.sendline("surrender")
-# log.info(s.recvline())
-
-s.interactive()
+p.interactive()
+p.close()

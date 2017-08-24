@@ -18,6 +18,7 @@ for i in range(9):
         log.info(s.recvline())
     (s.sendline(chr(i + 0x41) + str(10)))
 
+"""
 for i in range(8):
     for r in range(22):
         log.info(s.recvline())
@@ -32,5 +33,8 @@ s.sendline("A3")
 
 s.sendline("surrender")
 log.info(s.recvline())
+"""
+
+gdb.attach(s)
 
 s.interactive()
